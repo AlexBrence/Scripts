@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo "Enter a class name: "
+read class_name
+
+var=$(pwd | rev | cut -d '/' -f1 | rev)
+
+if [[ $var == "src"  ]]; then
+    touch $class_name.cpp;
+    touch ../include/$class_name.h;
+elif [[ $var == "include"  ]]; then
+    touch $class_name.h;
+    touch ../src/$class_name.cpp;
+else 
+    touch src/$class_name.cpp include/$class_name.h;
+fi
