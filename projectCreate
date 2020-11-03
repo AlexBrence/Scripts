@@ -88,7 +88,7 @@ function cpp_init(){
     echo "cmake_minimum_required(VERSION 2.8.9)"
     echo "project($project_name)"
     echo "include_directories(include)"
-    echo 'file(GLOB_RECURSE SOURCES "src/*".cc)'
+    echo 'file(GLOB_RECURSE SOURCES "src/*".cpp)'
     echo "add_executable($exe_name \${SOURCES})"
     echo "install(TARGETS $exe_name DESTINATION /usr/bin)"
   ) > $project_name/CMakeLists.txt
