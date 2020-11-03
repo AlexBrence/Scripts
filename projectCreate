@@ -136,7 +136,7 @@ function cpp_init(){
     echo '"configuration": {'
     echo '"request": "launch",'
     echo "\"program\": \"debug/$exe_name\","
-    echo "\"cwd\": \"`pwd`\"," >> .vimspector.json
+    echo "\"cwd\": \"`pwd`\"," 
     echo '"externalConsole": true,'
     echo '"MIMode": "gdb"'
     echo '}'
