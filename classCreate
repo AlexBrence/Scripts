@@ -3,14 +3,33 @@
 echo "Enter a class name: "
 read class_name
 
-var=$(pwd | rev | cut -d '/' -f1 | rev)
+add_header_guard() {
+   local upper=$(echo "$class_name" | tr [a-z] [A-Z]);
+   echo "#ifndef ${upper}_H" >> $1;
+   echo -e "#define ${upper}_H\n\n" >> $1;
+   echo -e "class $class_name {\n\n};\n\n" >> $1;
+   echo "#endif" >> $1;
+}
 
-if [[ $var == "src"  ]]; then
-    touch $class_name.cpp;
-    touch ../include/$class_name.h;
-elif [[ $var == "include"  ]]; then
-    touch $class_name.h;
-    touch ../src/$class_name.cpp;
+add_include() {
+    echo "#include \"${class_name}.h\"" >> $1;
+}
+
+current_dir=$(pwd | rev | cut -d '/' -f1 | rev)
+
+if [[ $current_dir == "src"  ]]; then
+    #touch $class_name.cpp;
+    #touch ../include/$class_name.h;
+    add_header_guard "../include/$class_name.h";
+    add_include "$class_name.cpp";
+elif [[ $current_dir == "include"  ]]; then
+    #touch $class_name.h;
+    #touch ../src/$class_name.cpp;
+    add_include "../src/$class_name.cpp";
+    add_header_guard "$class_name.h";
+    
 else 
-    touch src/$class_name.cpp include/$class_name.h;
+    #touch src/$class_name.cpp include/$class_name.h;
+    add_header_guard "include/$class_name.h";
+    add_include "src/$class_name.cpp";
 fi
