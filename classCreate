@@ -5,10 +5,8 @@ read class_name
 
 add_header_guard() {
    local upper=$(echo "$class_name" | tr [a-z] [A-Z]);
-   echo "#ifndef ${upper}_H" >> $1;
-   echo -e "#define ${upper}_H\n\n" >> $1;
+   echo -e "#pragma once\n\n" >> $1;
    echo -e "class $class_name {\n\n};\n\n" >> $1;
-   echo "#endif" >> $1;
 }
 
 add_include() {
