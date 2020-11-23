@@ -136,14 +136,41 @@ function cpp_init(){
     echo '"configuration": {'
     echo '"request": "launch",'
     echo "\"program\": \"debug/$exe_name\","
+    echo "\"args\": [],"
     echo "\"cwd\": \"`pwd`/$project_name\"," 
+    echo "\"environment\": [],"
     echo '"externalConsole": true,'
+    echo '"MIMode": "gdb"'
+    echo '}'
+    echo '},'
+
+    echo '"Attach": {'
+    echo '"adapter": "vscode-cpptools",'
+    echo '"configuration": {'
+    echo '"request": "attach",'
+    echo "\"program\": \"debug/$exe_name\","
     echo '"MIMode": "gdb"'
     echo '}'
     echo '}'
     echo '}'
     echo '}'
   ) > $project_name/.vimspector.json
+
+#    echo '{'
+#    echo '"configurations": {'
+#    echo '"launch": {'
+#    echo '"adapter": "vscode-cpptools",'
+#    echo '"configuration": {'
+#    echo '"request": "launch",'
+#    echo "\"program\": \"debug/$exe_name\","
+#    echo "\"cwd\": \"`pwd`/$project_name\"," 
+#    echo '"externalconsole": true,'
+#    echo '"MIMode": "gdb"'
+#    echo '}'
+#    echo '}'
+#    echo '}'
+#    echo '}'
+#  ) > $project_name/.vimspector.json
 
   [ "$git_init" == "true" ] && git init $project_name
 
